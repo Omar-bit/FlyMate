@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "608776488312",
+    "firebase_url": "https://flymate-app-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flymate-app",
+    "storage_bucket": "flymate-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608776488312:android:403551e1ac0c7e3f4d348d",
+        "android_client_info": {
+          "package_name": "com.bo3.flymate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608776488312-f3v69gee674btcnqg24jcp1nbgbv14gm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bo3.flymate",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "608776488312-2ughjn8jr53u9uk2796ac956t5t98eqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATvDmVIE3gmVCJFCY3JKXJVjsNaR3d4rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608776488312-2ughjn8jr53u9uk2796ac956t5t98eqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "608776488312-hcbpigenmttr5pbo7n9ent26pd97k426.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bo3.flymate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

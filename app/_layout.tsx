@@ -1,29 +1,44 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+import { AuthContextProvider } from '@/providers/AuthContext';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
+import Toast from 'react-native-toast-message';
+import '../global.css';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <AuthContextProvider>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        }}
+      >
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={{
+            flex: 1,
+          }}
+        >
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          />
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+      <Toast />
+      <StatusBar
+        barStyle={'light-content'}
+        backgroundColor='white'
+        animated
+        translucent
+        showHideTransition={'fade'}
+      />
+    </AuthContextProvider>
   );
 }
