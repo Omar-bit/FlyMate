@@ -25,7 +25,7 @@ export default function Input({
       <View className='relative border border-gray-600 rounded-lg bg-[#1f2937] '>
         <TextInput
           placeholder={placeholder}
-          secureTextEntry={type === 'password'}
+          secureTextEntry={type === 'password' && !passwordVisible}
           keyboardType={type === 'email' ? 'email-address' : 'default'}
           value={value}
           onChangeText={onChangeText}

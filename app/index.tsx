@@ -35,7 +35,7 @@ try {
 export default function Index() {
   const router = useRouter();
   const authContext = useAuth();
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -136,7 +136,7 @@ export default function Index() {
     <View className='flex-1 justify-center items-center p-5 gap-5 bg-[#111827]'>
       <Image
         source={require('../assets/logo.png')}
-        className='size-32 rounded-lg'
+        className='size-32 rounded-full'
       />
       <Text className='font-extrabold mb-7 text-2xl text-white'>
         Welcome to FlyMate
