@@ -1131,7 +1131,8 @@ function Home() {
   const [showScrollButton, setShowScrollButton] = useState<boolean>(false);
   const [departure, setDeparture] = useState<string>('');
   const [arrival, setArrival] = useState<string>('');
-  const [airports, setAirports] = useState<any[]>([]);
+  const [depAirports, setDepAirports] = useState<any[]>([]);
+  const [arrAirports, setArrAirports] = useState<any[]>([]);
   const [selectedDepAirport, setSelectedDepAirport] = useState<any>(null);
   const [selectedArrAirport, setSelectedArrAirport] = useState<any>(null);
   const [departDate, setDepartDate] = useState<Date | undefined>(undefined);
@@ -1139,7 +1140,11 @@ function Home() {
   const [flights, setFlights] = useState<any[]>(fakeFlights || []);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const debouncedAirport = useDebouncedCallback(getAirports, 750);
-  const airportsOptions = airports?.map((airport: any) => ({
+  const depAirportsOptions = depAirports?.map((airport: any) => ({
+    label: airport.name,
+    value: `${airport.skyId}-${airport.entityId}`,
+  }));
+  const arrAirportsOptions = arrAirports?.map((airport: any) => ({
     label: airport.name,
     value: `${airport.skyId}-${airport.entityId}`,
   }));
@@ -1152,7 +1157,7 @@ function Home() {
       setArrival(text);
     }
     if (text.length > 2) {
-      debouncedAirport(text);
+      debouncedAirport(text, type);
     }
   }
   function scrollToTop() {
@@ -1164,7 +1169,7 @@ function Home() {
     setShowScrollButton(scrollY > 100);
   }
 
-  async function getAirports(query: string) {
+  async function getAirports(query: string, type: 'departure' | 'arrival') {
     try {
       const { data: response } = await axios.get(
         'https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport',
@@ -1187,7 +1192,11 @@ function Home() {
         name: airport.presentation.suggestionTitle,
         country: airport.presentation.subtitle,
       }));
-      setAirports(airportsFormated);
+      if (type === 'departure') {
+        setDepAirports(airportsFormated);
+      } else {
+        setArrAirports(airportsFormated);
+      }
     } catch (error) {
       console.error('Error fetching airports:', error);
     }
@@ -1261,9 +1270,13 @@ function Home() {
     }
   }
 
-  function getAirportName(value: string): string {
+  function getAirportName(
+    value: string,
+    type: 'departure' | 'arrival'
+  ): string {
+    const airports = type === 'departure' ? depAirports : arrAirports;
     const airport = airports.find(
-      (airport) => `${airport.skyId}-${airport.entityId}` === value
+      (airport: any) => `${airport.skyId}-${airport.entityId}` === value
     );
     return airport ? airport.name : '';
   }
@@ -1296,7 +1309,7 @@ function Home() {
           <View className='w-full gap-3'>
             <Dropdown
               label='From (search to get suggestions)*'
-              data={airportsOptions}
+              data={depAirportsOptions}
               value={selectedDepAirport}
               onSelectionChange={setSelectedDepAirport}
               search={true}
@@ -1308,7 +1321,7 @@ function Home() {
             />
             <Dropdown
               label='To (search to get suggestions)*'
-              data={airportsOptions}
+              data={arrAirportsOptions}
               value={selectedArrAirport}
               onSelectionChange={setSelectedArrAirport}
               search={true}
@@ -1365,8 +1378,8 @@ function Home() {
               {/* Flight route info */}
               <View className='bg-[#1f2937f6] p-3 rounded-lg border border-gray-600 mb-4'>
                 <Text className='text-white font-medium text-center'>
-                  {getAirportName(selectedDepAirport)} {'->'}
-                  {getAirportName(selectedArrAirport)}
+                  {getAirportName(selectedDepAirport, 'departure')} {'->'}
+                  {getAirportName(selectedArrAirport, 'arrival')}
                 </Text>
                 <Text className='text-gray-400 text-sm text-center mt-1'>
                   {departDate?.toLocaleDateString('en-US', {
