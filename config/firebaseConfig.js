@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeApp } from 'firebase/app';
 import { getReactNativePersistence, initializeAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // Conditionally import Google Sign-In
 let GoogleSignin = null;
@@ -34,6 +35,7 @@ const app = initializeApp(firebaseConfig);
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage),
 });
+const db = getFirestore(app);
 
 if (GoogleSignin) {
   GoogleSignin.configure({
@@ -45,4 +47,4 @@ if (GoogleSignin) {
 // For more information on how to access Firebase in your project,
 // see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
 
-export { app, auth };
+export { app, auth, db };

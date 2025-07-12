@@ -1,6 +1,6 @@
 import { AuthContextProvider } from '@/providers/AuthContext';
 import * as NavigationBar from 'expo-navigation-bar';
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 import { useEffect } from 'react';
 import {
   KeyboardAvoidingView,
@@ -26,9 +26,8 @@ export default function RootLayout() {
           paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         }}
       >
-        <Toast />
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           style={{
             flex: 1,
           }}
@@ -40,11 +39,8 @@ export default function RootLayout() {
             translucent
             showHideTransition={'fade'}
           />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-            }}
-          />
+          <Slot />
+          <Toast />
         </KeyboardAvoidingView>
       </SafeAreaView>
     </AuthContextProvider>

@@ -1,5 +1,6 @@
+import Navbar from '@/components/Navbar';
 import useAuth from '@/providers/AuthContext';
-import { Stack, useRouter } from 'expo-router';
+import { Slot, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 
@@ -26,10 +27,9 @@ export default function ProtectedLayout() {
     return null;
   }
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    />
+    <View className='flex-1 pb-24 relative'>
+      <Slot />
+      <Navbar />
+    </View>
   );
 }
