@@ -1125,6 +1125,7 @@ const fakeFlights = [
     score: 0.372042,
   },
 ];
+const flightsAPI = 'https://sky-scrapper.p.rapidapi.com/api/';
 function Home() {
   const { logout } = useAuth();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -1172,12 +1173,11 @@ function Home() {
   async function getAirports(query: string, type: 'departure' | 'arrival') {
     try {
       const { data: response } = await axios.get(
-        'https://sky-scrapper.p.rapidapi.com/api/v1/flights/searchAirport',
+        flightsAPI + 'v1/flights/searchAirport',
         {
           params: { query },
           headers: {
-            'x-rapidapi-key':
-              '8b8404e2bdmsh06aa12654c3bfb1p1691cfjsn9ea7091f51d4',
+            'x-rapidapi-key': process.env.EXPO_PUBLIC_SKYSCRAPPER_API_KEY,
             'x-rapidapi-host': 'sky-scrapper.p.rapidapi.com',
           },
         }
@@ -1221,7 +1221,7 @@ function Home() {
       const date = departDate?.toISOString().split('T')[0];
 
       const { data: response } = await axios.get(
-        'https://sky-scrapper.p.rapidapi.com/api/v2/flights/searchFlights',
+        flightsAPI + 'v2/flights/searchFlights',
         {
           params: {
             originSkyId: depSkyId,
@@ -1237,8 +1237,7 @@ function Home() {
             countryCode: 'US',
           },
           headers: {
-            'x-rapidapi-key':
-              '8b8404e2bdmsh06aa12654c3bfb1p1691cfjsn9ea7091f51d4',
+            'x-rapidapi-key': process.env.EXPO_PUBLIC_SKYSCRAPPER_API_KEY,
             'x-rapidapi-host': 'sky-scrapper.p.rapidapi.com',
           },
         }
