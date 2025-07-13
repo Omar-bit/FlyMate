@@ -1285,10 +1285,8 @@ function Home() {
     console.log('Flights ', flights);
   }, [flights]);
   const { height: screenHeight } = Dimensions.get('window');
-
   return (
     <View style={{ flex: 1, position: 'relative' }}>
-      {' '}
       <ScrollView
         ref={scrollViewRef}
         className='flex-1  p-5'
@@ -1347,7 +1345,7 @@ function Home() {
                 onChange={setReturnDate}
               />
             </View>
-          </View>{' '}
+          </View>
           <Button
             disabled={isSearchDisabled || isLoading}
             onPress={searchFlights}
@@ -1362,7 +1360,7 @@ function Home() {
           >
             {isLoading ? 'Searching...' : 'Search Flights'}
           </Button>
-        </View>{' '}
+        </View>
         <View className='w-full mt-5'>
           {isLoading ? (
             <View className='bg-[#1f2937f6] p-4 rounded-lg border border-gray-600'>
@@ -1409,14 +1407,14 @@ function Home() {
             <View className='bg-[#1f2937f6] p-4 rounded-lg border border-gray-600'>
               <Text className='text-white font-bold mb-2'>Flight Results</Text>
               <Text className='text-gray-400'>
-                Search for flights to see results here.{' '}
+                Search for flights to see results here.
               </Text>
             </View>
           )}
         </View>
         <TouchableOpacity onPress={logout}>
           <Text className='text-white'>Logout</Text>
-        </TouchableOpacity>{' '}
+        </TouchableOpacity>
       </ScrollView>
       {/* Scroll to top button*/}
       {showScrollButton && (

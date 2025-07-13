@@ -12,16 +12,7 @@ try {
   console.log('Google Sign-In not available in this EXPO GO ');
 }
 
-// Optionally import the services that you want to use
-// import {...} from 'firebase/database';
-// import {...} from 'firebase/firestore';
-// import {...} from 'firebase/functions';
-// import {...} from 'firebase/storage';
-
-// Initialize Firebase
 const firebaseConfig = {
-  //   databaseURL: 'https://project-id.firebaseio.com',
-
   apiKey: 'AIzaSyDEOFcm3vWeZJIVdRptfW2LAHJ-VMWode0',
   authDomain: 'flymate-app.firebaseapp.com',
   projectId: 'flymate-app',
@@ -43,8 +34,5 @@ if (GoogleSignin) {
       '608776488312-2ughjn8jr53u9uk2796ac956t5t98eqe.apps.googleusercontent.com',
   });
 }
-
-// For more information on how to access Firebase in your project,
-// see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
 
 export { app, auth, db };
