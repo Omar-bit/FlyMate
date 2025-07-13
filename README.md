@@ -1,50 +1,104 @@
-# Welcome to your Expo app 👋
+# FlyMate ✈️
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern React Native flight booking application built with Expo, featuring flight search, user authentication, and a beautiful UI.
 
-## Get started
+## 📱 Features
 
-1. Install dependencies
+- **Flight Search**: Search and compare flights with real-time data
+- **User Authentication**: Secure login with email/password and Google Sign-In
+- **Cross-Platform**: Runs on iOS and Android
+- **Modern UI**: Built with NativeWind (Tailwind CSS for React Native)
+- **Firebase Integration**: Authentication and backend services
+- **Protected Routes**: Secure navigation with authentication guards
+
+## 🚀 Tech Stack
+
+- **Framework**: React Native with Expo (~53.0.17)
+- **Navigation**: Expo Router with typed routes
+- **Styling**: NativeWind (Tailwind CSS)
+- **Authentication**: Firebase Auth with Google Sign-In
+- **State Management**: React Context
+- **Language**: TypeScript
+- **Icons**: Expo Vector Icons
+
+## 📋 Prerequisites
+
+Before running this project, make sure you have:
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI
+- Android Studio (for Android development)
+- Xcode (for iOS development, macOS only)
+
+## 🛠️ Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone [<repository-url>](https://github.com/Omar-bit/FlyMate)
+   cd FlyMate
+   ```
+
+2. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Set up Firebase**
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+   - Enable Authentication with Email/Password and Google Sign-In
+   - Download configuration files:
+     - `google-services.json` for Android (place in `/android/app/`)
+     - `GoogleService-Info.plist` for iOS (place in root directory)
 
-   ```bash
-   npx expo start
-   ```
+4. **Configure Google Sign-In**
+   - Follow the setup guide for [@react-native-google-signin/google-signin](https://github.com/react-native-google-signin/google-signin)
+   - Add your OAuth 2.0 client IDs to Firebase
+   -
+5. **SkyScrapper API Key**
+   - Hit https://rapidapi.com/apiheya/api/sky-scrapper
+   - Create a Rapidapi account
+   - Subscribe to SkyScrapper service
+   - Get the SkyScrapper API key
 
-In the output, you'll find options to open the app in a
+6. **Configure .env Variables**
+   - Create and modify the .env variables
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🏃‍♂️ Running the Project
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Development Server
 
 ```bash
-npm run reset-project
+npm start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Platform-Specific Commands
 
-## Learn more
+```bash
+# iOS (requires macOS and Xcode)
+npm run ios
 
-To learn more about developing your project with Expo, look at the following resources:
+# Android (requires Android Studio)
+npm run android
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Web
+npm run web
+```
 
-## Join the community
+### Build Commands
 
-Join our community of developers creating universal apps.
+```bash
+# Build for production
+npx expo build
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Create development build
+npx expo run:android
+npx expo run:ios
+```
+
+## ⚠️ Important
+
+1. In Order to use Google Sign in you need to run the app on a physical device `npx expo run android/ios`
+2. I exposed the .env file to facilate the review and test process for you (im gonna delete these secrets from firebase and skyscrapper later)
