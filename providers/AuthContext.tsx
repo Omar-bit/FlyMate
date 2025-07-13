@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { User } from 'firebase/auth';
+import { updateProfile, User } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../config/firebaseConfig';
 
 const authContext = createContext<{
   user: User | null;
   logout: () => Promise<void>;
+  updateUserProfile: (displayName: string, photoURL?: string) => Promise<void>;
   isLoading: boolean;
 } | null>(null);
 
@@ -42,8 +43,27 @@ export function AuthContextProvider({
     return auth.signOut();
   }
 
+  async function updateUserProfile(displayName: string, photoURL?: string) {
+    if (!auth.currentUser) {
+      throw new Error('No user is currently logged in');
+    }
+
+    const updates: { displayName: string; photoURL?: string } = {
+      displayName,
+    };
+
+    if (photoURL) {
+      updates.photoURL = photoURL;
+    }
+
+    await updateProfile(auth.currentUser, updates);
+    setUser({ ...auth.currentUser });
+  }
+
   return (
-    <authContext.Provider value={{ user, logout, isLoading }}>
+    <authContext.Provider
+      value={{ user, logout, updateUserProfile, isLoading }}
+    >
       {children}
     </authContext.Provider>
   );

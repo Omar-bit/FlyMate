@@ -29,6 +29,7 @@
     "expo-font": "~13.3.2",
     "expo-haptics": "~14.1.4",
     "expo-image": "~2.3.2",
+    "expo-image-picker": "~16.1.4",
     "expo-linking": "~7.1.7",
     "expo-navigation-bar": "~4.2.7",
     "expo-router": "~5.1.3",
@@ -44,6 +45,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.5",
+    "react-native-blob-util": "^0.22.2",
     "react-native-element-dropdown": "^2.12.4",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
@@ -52,7 +54,8 @@
     "react-native-toast-message": "^2.3.3",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
-    "use-debounce": "^10.0.5"
+    "use-debounce": "^10.0.5",
+    "expo-file-system": "~18.1.11"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

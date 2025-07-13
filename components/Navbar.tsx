@@ -1,3 +1,4 @@
+import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { BlurView } from 'expo-blur';
@@ -30,6 +31,12 @@ export default function Navbar() {
             path: '/saved',
             // icon: <FontAwesome5 name='bookmark' size={24} color='black' />,
             icon: { family: FontAwesome5, name: 'bookmark' },
+          },
+          {
+            label: 'Profile',
+            path: '/profile',
+            // icon: <FontAwesome5 name='bookmark' size={24} color='black' />,
+            icon: { family: AntDesign, name: 'user' },
           },
         ].map((item, index) => (
           <TouchableOpacity
