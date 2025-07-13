@@ -1137,7 +1137,7 @@ function Home() {
   const [selectedArrAirport, setSelectedArrAirport] = useState<any>(null);
   const [departDate, setDepartDate] = useState<Date | undefined>(undefined);
   const [returnDate, setReturnDate] = useState<Date | undefined>(undefined);
-  const [flights, setFlights] = useState<any[]>(fakeFlights || []);
+  const [flights, setFlights] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const debouncedAirport = useDebouncedCallback(getAirports, 750);
   const depAirportsOptions = depAirports?.map((airport: any) => ({
@@ -1412,9 +1412,6 @@ function Home() {
             </View>
           )}
         </View>
-        <TouchableOpacity onPress={logout}>
-          <Text className='text-white'>Logout</Text>
-        </TouchableOpacity>
       </ScrollView>
       {/* Scroll to top button*/}
       {showScrollButton && (
